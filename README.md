@@ -17,23 +17,19 @@ projects:
         version: ^2.1.0
 ```
 
-# Example
-FormActions example:
-
 ```php
 ...
 public function __construct(Main $main) {
 		parent::__construct("Test Form",
-			"Hello player!",
-			[
-				new MenuOption("Test Button", null, 0) //text, image, id
-			],
-			function (Player $player, int $option) use ($main): void {
-				$id = $this->getOption($option)->getID();
-
-				$action = new FormActions("menuform", $main->getConfig()->get("formactions"));
-				$action->actionMenuForm($player, $this, $id);
-			}
+		"Hello my friend!",
+		[
+			new MenuOption("Test Button", null, 0) //text, image, id
+		],
+		function (Player $player, int $option) use ($main): void {
+			$id = $this->getOption($option)->getID();
+			$action = new FormActions("menuform", $main->getConfig->get("form-actions"));
+			$action->actionMenuForm($player, $id);
+		}
 		);
 	}
 ...
