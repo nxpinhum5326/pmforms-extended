@@ -1,0 +1,13 @@
+name: DemoPlugin
+version: 1.0.0
+api: 5.0.0
+author: he who remains
+main: pmformsext\Main
+
+commands:
+  test:
+    description: test command
+    permission: "test.command"
+permissions:
+  test.command:
+    default: true
