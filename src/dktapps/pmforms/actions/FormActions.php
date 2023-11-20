@@ -26,28 +26,36 @@ declare(strict_types=1);
  */
 namespace dktapps\pmforms\actions;
 
-use dktapps\pmforms\MenuForm;
 use pocketmine\player\Player;
+use pocketmine\Server;
+use pocketmine\utils\Config;
 
 class FormActions{
 	/** @var string */
 	private $type;
-	/** @var array */
+	/** @var Config[] */
 	private $actionConfig;
 
+	/**
+	 * @param string $type
+	 * @param Config[] $actionConfig
+	 */
 	public function __construct(string $type, array $actionConfig){
 		$this->type = $type;
 		$this->actionConfig = $actionConfig;
 	}
 
-	#for now its simply useless func... :d
+	/**
+	 * @return string
+	 */
 	public function getType() : string{
 		return $this->type;
 	}
 
 	/**
-	 * added by scher
-	 * function's name is bad, ik.
+	 * @param Player $player
+	 * @param int $id
+	 * @return void
 	 */
 	public function actionMenuForm(Player $player, int $id) : void{
 		if (isset($this->actionConfig[$id]["actions"])) {
@@ -58,22 +66,29 @@ class FormActions{
 
 	}
 
+	/**
+	 * @param Player $player
+	 * @param Config[] $actionConfig
+	 * @return void
+	 */
 	private function sendAction(Player $player, array $actionConfig) : void{
 		$actionType = $actionConfig["action"] ?? null;
 		$message = $actionConfig["message"] ?? "hello world!";
-
-		#for&in test
-		switch ($actionType) {
-			case "sendMessage":
-				$player->sendMessage($message);
-				break;
-			case "sendTitle":
-				$player->sendTitle($message);
-				break;
-			case null:
-				//todo
-				break;
+		if (is_string($message)) {
+			#for&in test
+			switch ($actionType) {
+				case "sendMessage":
+					$player->sendMessage($message);
+					break;
+				case "sendTitle":
+					$player->sendTitle($message);
+					break;
+				case null:
+					Server::getInstance()->getLogger()->alert("[pmforms-extended] null data received");
+					break;
+			}
 		}
+
 	}
 
 }
