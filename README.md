@@ -17,3 +17,10 @@ projects:
       - src: dktapps-pm-pl/pmforms/pmforms
         version: ^2.1.0
 ```
+
+## TOdo List
+- [x] FormActions for MenuForm
+- [ ] Some PHPStan fixes (dk can't be serious...)
+- [ ] New action types & advanced** multiple action(s)
+- [ ] Maybe a identifier for smt.
+> f you have an idea, you can open an issue or write to @nepinhum.
